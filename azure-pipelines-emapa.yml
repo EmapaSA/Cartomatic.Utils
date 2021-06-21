@@ -1,0 +1,73 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - '*'
+    exclude:
+      - 'old'
+  paths:
+    include:
+      - '*'
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: 'Cartomatic.Utils/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Install nuget'
+  inputs:
+    versionSpec: 
+    checkLatest: true
+
+- task: NuGetCommand@2
+  displayName: 'Nuget restore'
+  inputs:
+    command: 'restore'
+    restoreSolution: '$(solution)'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build'
+  inputs:
+    command: 'build'
+    projects: 'Cartomatic.Utils'
+    #configuration: '$(buildConfiguration)'
+    arguments: '--configuration Release'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Test'
+  inputs:
+    command: 'test'
+    projects: '**/*Tests.csproj'
+
+# does not seem to work with multitargets so far; throws a unable to find bin\Release\{ProjectName}\bin\Release\'. Make sure the project has been built
+# - task: NuGetCommand@2
+#   displayName: 'Nuget pack'
+#   inputs:
+#     command: 'pack'
+#     packagesToPack: '**/*.csproj;!**/*.Tests.csproj'
+#     packDestination: '$(Build.ArtifactStagingDirectory)'
+#     versioningScheme: 'off'
+#     includeSymbols: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/Cartomatic.Utils.csproj'
+    includesymbols: true
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  displayName: 'Nuget push'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '5d98b0b6-76b0-466e-9b63-4dbed6fcc4b5'
+    allowPackageConflicts: true
