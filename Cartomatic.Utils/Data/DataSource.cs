@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,14 +55,82 @@ namespace Cartomatic.Utils.Data
         /// </summary>
         public bool UseDefaultServiceDb { get; set; }
 
-
+        /// <summary>
+        /// other connection settings as read from a connection string
+        /// </summary>
+        private List<string> OtherConnSettings { get; set; }
 
 #pragma warning disable 1591
         public DataSourceCredentials()
         {
             UseDefaultServiceDb = true;
         }
+
+        public DataSourceCredentials(string connStr, DataSourceProvider? provider = null)
+        {
+            var connStrParams = ExtractConnStrParams(connStr);
+            DataSourceProvider = provider ?? GetDataSourceProvider(connStrParams);
+
+            if (connStrParams.ContainsKey("server"))
+                ServerHost = connStrParams["server"];
+
+            if (connStrParams.ContainsKey("data source"))
+                ServerHost = connStrParams["data source"];
+
+            if (connStrParams.ContainsKey("port") && int.TryParse(connStrParams["port"], out var port))
+                ServerPort = port;
+
+            if (connStrParams.ContainsKey("database"))
+                DbName = connStrParams["database"];
+
+            if (connStrParams.ContainsKey("user id"))
+                UserName = connStrParams["user id"];
+
+            if (connStrParams.ContainsKey("password"))
+                Pass = connStrParams["password"];
+
+            //oracle should use uid / pwd
+
+            //Post process...
+            if (DataSourceProvider == DataSourceProvider.SqlServer)
+            {
+                var hostAndPort = ServerHost.Split(',');
+                ServerHost = hostAndPort.First();
+                if (hostAndPort.Length > 1 && int.TryParse(hostAndPort[1], out var port1))
+                    ServerPort = port1;
+            }
+        }
 #pragma warning restore 1591
+
+        private Dictionary<string, string> ExtractConnStrParams(string connStr)
+        {
+            return connStr
+                .Split(';')
+                .Select(x => x.Split('='))
+                .ToDictionary(
+                    x => x[0].Trim().ToLower(),
+                    x => x.Length > 1 ? x[1] : null
+                );
+        }
+
+        private DataSourceProvider GetDataSourceProvider(Dictionary<string, string> connStrParams)
+        {
+            //decide on the provider based on the connection string params
+            //note: this may a bit naive but works for current needs; will be extended as required
+
+            //by default use sql server as it has no specific keys really
+            var provider = DataSourceProvider.SqlServer;
+
+            if (connStrParams.ContainsKey("port"))
+                provider = DataSourceProvider.Npgsql;
+
+
+            if (connStrParams.ContainsKey("uid") || connStrParams.ContainsKey("pwd"))
+                provider = DataSourceProvider.Oracle;
+
+
+            return provider;
+        }
 
         /// <summary>
         /// Returns a default Db name
@@ -87,7 +156,7 @@ namespace Cartomatic.Utils.Data
         /// <returns></returns>
         public string GetConnectionString(bool serviceDatabase = false, bool superUser = false, bool pooling = true)
         {
-            string conn = "INVALID CONNECTION STRING";
+            var conn = "INVALID CONNECTION STRING";
 
             switch (DataSourceProvider)
             {
@@ -119,6 +188,9 @@ namespace Cartomatic.Utils.Data
                     throw new NotImplementedException();
                     //break;
             }
+
+            if (OtherConnSettings?.Any() == true)
+                conn += string.Join(";", OtherConnSettings);
 
             return conn;
         }

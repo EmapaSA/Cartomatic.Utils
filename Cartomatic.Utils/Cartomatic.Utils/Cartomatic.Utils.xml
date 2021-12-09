@@ -1167,6 +1167,11 @@
             Whether or not default service Db name should be used when db name not provided - applicable to Npgsql only
             </summary>
         </member>
+        <member name="P:Cartomatic.Utils.Data.DataSourceCredentials.OtherConnSettings">
+            <summary>
+            other connection settings as read from a connection string
+            </summary>
+        </member>
         <member name="M:Cartomatic.Utils.Data.DataSourceCredentials.GetDefaultDbName">
             <summary>
             Returns a default Db name
@@ -2230,6 +2235,11 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="T:Cartomatic.Utils.JsonSerializableObjects.SerializableDictionaryOfInt">
+            <summary>
+            explicit implementation of a serializable dictionary for int
+            </summary>
+        </member>
         <member name="T:Cartomatic.Utils.JsonSerializableObjects.SerializableDictionaryOfObject">
             <summary>
             explicit implementation of a serializable dictionary for object
@@ -2479,6 +2489,112 @@
             <param name="pName"></param>
             <param name="bindingFlags">defaults to BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.IgnoreCase</param>
             <returns></returns>
+        </member>
+        <member name="T:Cartomatic.Utils.RestApi">
+            <summary>
+            REST api utils
+            </summary>
+        </member>
+        <member name="T:Cartomatic.Utils.RestApi.ApiCallOutput`1">
+            <summary>
+            api call output - encapsulates the actual api output and the response itself for further investigation in a case it's required
+            </summary>
+            <typeparam name="TOut"></typeparam>
+        </member>
+        <member name="P:Cartomatic.Utils.RestApi.ApiCallOutput`1.Output">
+            <summary>
+            deserialized api call output
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.RestApi.ApiCallOutput`1.Response">
+            <summary>
+            raw IRestResponse
+            </summary>
+        </member>
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Calls a rest API
+            </summary>
+            <param name="url"></param>
+            <param name="route"></param>
+            <param name="method"></param>
+            <param name="queryParams"></param>
+            <param name="data"></param>
+            <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
+            <param name="customHeaders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean)">
+            <summary>
+            Calls a rest API
+            </summary>
+            <param name="origHttpRequest">orig request to obtain some context from</param>
+            <param name="url"></param>
+            <param name="route"></param>
+            <param name="method"></param>
+            <param name="queryParams"></param>
+            <param name="data"></param>
+            <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
+            <param name="customHeaders"></param>
+            <param name="headersToSkip"></param>
+            <param name="transferAuthHdr">Whether or not auth header should be automatically transferred to outgoing request; when a custom auth header is provided it will always take precedence</param>
+            <param name="transferRequestHdrs">Whether or not should auto transfer request headers so they are sent out </param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Calls a REST API, auto deserializes output
+            </summary>
+            <typeparam name="TOut"></typeparam>
+            <param name="url"></param>
+            <param name="route"></param>
+            <param name="method"></param>
+            <param name="queryParams"></param>
+            <param name="data"></param>
+            <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
+            <param name="customHeaders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean)">
+            <summary>
+            Calls a REST API, auto deserializes output
+            </summary>
+            <typeparam name="TOut"></typeparam>
+            <param name="origHttpRequest">orig request for context extraction - headers, etc.</param>
+            <param name="url"></param>
+            <param name="route"></param>
+            <param name="method"></param>
+            <param name="queryParams"></param>
+            <param name="data"></param>
+            <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
+            <param name="customHeaders"></param>
+            <param name="headersToSkip">header names to be skipped when transferring</param>
+            <param name="transferAuthHdr"></param>
+            <param name="transferRequestHdrs">Whether or not should auto transfer request headers so they are sent out </param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.RestApi.ExtractResponseContentAsString(RestSharp.IRestResponse)">
+            <summary>
+            Extracts response content as string
+            </summary>
+            <param name="resp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.RestApi.ExtractAuthorizationHeader(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            Extracts auth token off a request
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.RestApi.TransferRequestHeaders(Microsoft.AspNetCore.Http.HttpRequest,RestSharp.RestRequest,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Transfers request headers
+            </summary>
+            <param name="origHttpRequest">orig request to transfer headers from</param>
+            <param name="restRequest">restsharp request to transfer the headers onto</param>
+            <param name="customHdrs"></param>
+            <param name="headersToSkip"></param>
+            <param name="transferHdrs">Whether or not should transfer the headers already in the request</param>
         </member>
         <member name="T:Cartomatic.Utils.RestSharpSerializers.NewtonSoftJsonSerializer">
             <summary>

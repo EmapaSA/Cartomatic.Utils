@@ -6,6 +6,10 @@ namespace Cartomatic.Utils.Web
 {
     public static class ContentType
     {
+        public const string CONTENT_UNKNOWN = "unknown";
+        public const string CONTENT_BINARY = "application/octet-stream";
+
+
         /// <summary>
         /// Gets content type info for a file extension or mime
         /// </summary>
@@ -21,7 +25,7 @@ namespace Cartomatic.Utils.Web
             switch (extensionOrMime.ToLower())
             {
                 default:
-                    return ("unknown", "unknown", "unknown", "unknown", false);
+                    return (CONTENT_UNKNOWN, CONTENT_UNKNOWN, CONTENT_UNKNOWN, CONTENT_UNKNOWN, false);
 
                 case "x3d":
                 case "application/vnd.hzn-3d-crossword":
@@ -212,7 +216,7 @@ namespace Cartomatic.Utils.Web
                 case "application/x-bcpio":
                     return ("Binary CPIO Archive", "application/x-bcpio", ".bcpio", "Wikipedia: cpio", true);
                 case "bin":
-                case "application/octet-stream": return ("Binary Data", "application/octet-stream", ".bin", null, true);
+                case CONTENT_BINARY: return ("Binary Data", CONTENT_BINARY, ".bin", null, true);
 
                 case "bmp":
                 case "image/bmp": return ("Bitmap Image File", "image/bmp", ".bmp", "Wikipedia: BMP File Format", true);

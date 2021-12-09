@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 #endif
 
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
 using Microsoft.EntityFrameworkCore;
 #endif
 
@@ -34,7 +34,7 @@ namespace Cartomatic.Utils.Ef
         public static DbContext Clone(this DbContext ctx, bool contextOwnsConnection = true)
         {
             //need to clone the connection too as have no idea how the connection has been provided to the ctx - directly, via conn str name as conn str, etc.
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
             var clonedConn = (DbConnection)Activator.CreateInstance(ctx.Database.GetDbConnection().GetType());
             clonedConn.ConnectionString = ctx.Database.GetDbConnection().ConnectionString;
 #endif

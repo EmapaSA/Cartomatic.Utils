@@ -5,7 +5,9 @@ using System.Linq;
 using System.Web;
 #endif
 
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+
+
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 #endif
@@ -67,9 +69,10 @@ namespace Cartomatic.Utils.Web
 #if NETFULL
             context.Request.Url.ExtractProxiedUrl(urlParam).Proxy(context, completeRequest);
 #endif
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
             context.Request.GetDisplayUrl().ExtractProxiedUrl(urlParam).Proxy(context, completeRequest);
 #endif
+
         }
 
 
@@ -84,9 +87,9 @@ namespace Cartomatic.Utils.Web
             //create a request with proper context
             var request = url.CreateHttpWebRequest(context.Request);
 
-            var response = request.ExecuteRequest();
+            url.CreateHttpWebRequest();
 
-            response.CopyResponse(context.Response);
+            var response = request.ExecuteRequest();
 
             //complete the request if required
             if (completeRequest)
@@ -94,7 +97,7 @@ namespace Cartomatic.Utils.Web
 #if NETFULL
                 System.Web.HttpContext.Current.ApplicationInstance.CompleteRequest();
 #endif
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
 
 #endif
             }

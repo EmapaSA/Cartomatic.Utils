@@ -6,7 +6,7 @@ using System.Web;
 
 
 using System.Threading.Tasks;
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
 using System.Net;
 using Microsoft.AspNetCore.Http;
 #endif
@@ -190,7 +190,7 @@ namespace Cartomatic.Utils.Web
         }
 #endif
 
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
 
         /// <summary>
         /// Creates a http request with given context
