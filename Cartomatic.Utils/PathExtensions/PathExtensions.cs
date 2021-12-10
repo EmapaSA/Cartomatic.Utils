@@ -46,7 +46,7 @@ namespace Cartomatic.Utils
                 {
                     var basePath = AppDomain.CurrentDomain.BaseDirectory;
 
-#if NETCOREAPP || NETCOREAPP3_1
+#if NETCOREAPP || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
                     basePath =
 #if DEBUG
                         AppDomain.CurrentDomain.BaseDirectory;
