@@ -1464,6 +1464,36 @@
             returns ImageCodecInfo for given mime; used for setting up output format of image file
             </summary>
         </member>
+        <member name="M:Cartomatic.Utils.Drawing.ResolutionExtensions.DotsPerInchToDotsPerMm(System.Int32)">
+            <summary>
+            Converts dpi to dots per mm
+            </summary>
+            <param name="dpi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.ResolutionExtensions.DotsPerInchToDotsPerCm(System.Int32)">
+            <summary>
+            Converts dpi to dots per cm
+            </summary>
+            <param name="dpi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.ResolutionExtensions.MmToPix(System.Double,System.Int32)">
+            <summary>
+            Converts a value expressed in mm to a value expressed in pixels at specified dpi
+            </summary>
+            <param name="mm"></param>
+            <param name="dpi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.ResolutionExtensions.PixToMm(System.Int32,System.Int32)">
+            <summary>
+            Converts size expressed in pixels at given resolution to mm
+            </summary>
+            <param name="pix"></param>
+            <param name="dpi"></param>
+            <returns></returns>
+        </member>
         <member name="T:Cartomatic.Utils.Dto.ObjectExtensions">
             <summary>
             object extensions for DTO 
