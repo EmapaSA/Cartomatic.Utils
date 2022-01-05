@@ -55,7 +55,7 @@ namespace Cartomatic.Utils
         #if NET6_0_OR_GREATER   
                         //in net 6 System.Diagnostics.Process.GetCurrentProcess(), when running in IIS returns c:\\windows\\system32\\inetsrv
                         //so no good...
-                        Assembly.GetEntryAssembly().Location
+                        Assembly.GetEntryAssembly().Location;
                         
         #else
                         System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
