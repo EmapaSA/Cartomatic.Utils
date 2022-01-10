@@ -51,19 +51,19 @@ namespace Cartomatic.Utils
                     basePath =
     #if DEBUG
                         AppDomain.CurrentDomain.BaseDirectory;
-#else
+    #else
 
-#if NET6_0_OR_GREATER
+        #if NET6_0_OR_GREATER
                         //in net 6 System.Diagnostics.Process.GetCurrentProcess(), when running in IIS returns c:\\windows\\system32\\inetsrv
                         //so no good...
-                        Assembly.GetEntryAssembly().Location;
+                        System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
                         
-#else
+        #else
                         System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName);
 
-#endif
+        #endif
     
-#endif
+    #endif
 #endif
 
                     //solve it as relative to the base of the app (make it absolute in fact)
