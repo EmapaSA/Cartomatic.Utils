@@ -76,5 +76,22 @@ namespace Cartomatic.Utils
                 SphericalMercatorHalfSphere - y * tileSizeAtZoom - tileSizeAtZoom - collar
             );
         }
+        
+        /// <summary>
+        /// Gets a spherical mercator tile address for given coordinate and zoom level
+        /// </summary>
+        /// <param name="mercatorX"></param>
+        /// <param name="mercatorY"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
+        public static (int x, int y) GetTileAddressFromCoord(double mercatorX, double mercatorY, int z)
+        {
+            var tileSizeAtZoom = SphericalMercatorSphere / Math.Pow(2, z);
+
+            var x = (int)Math.Floor(Math.Abs(-SphericalMercatorHalfSphere - mercatorX) / tileSizeAtZoom);
+            var y = (int)Math.Floor(Math.Abs(SphericalMercatorHalfSphere - mercatorY) / tileSizeAtZoom);
+
+            return (x, y);
+        }
     }
 }

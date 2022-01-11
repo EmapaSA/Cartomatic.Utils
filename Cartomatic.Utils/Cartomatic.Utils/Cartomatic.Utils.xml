@@ -2414,6 +2414,15 @@
             <param name="buffer">Buffer to add to each side of a bounding box in order to extend it. buffer is expressed in pixels at a given zoom level</param>
             <returns></returns>
         </member>
+        <member name="M:Cartomatic.Utils.Mercator.GetTileAddressFromCoord(System.Double,System.Double,System.Int32)">
+            <summary>
+            Gets a spherical mercator tile address for given coordinate and zoom level
+            </summary>
+            <param name="mercatorX"></param>
+            <param name="mercatorY"></param>
+            <param name="z"></param>
+            <returns></returns>
+        </member>
         <member name="T:Cartomatic.Utils.NetCoreConfig">
             <summary>
             Net core cfg reader utils
