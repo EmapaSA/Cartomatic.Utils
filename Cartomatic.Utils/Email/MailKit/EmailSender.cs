@@ -18,17 +18,28 @@ namespace Cartomatic.Utils.Email.MailKit
     /// </summary>
     public class EmailSender: IEmailSender
     {
-        /// <summary>
-        /// Sends an email to the recipient. Email is sent in a fire'n'forget manner.
-        /// Note: in some scenarios fire'n'forget means the email may not eventually be sent at all.
-        /// Uses Mailkit as an smtp client
-        /// </summary>
-        /// <param name="emailAccount">EmailAccount deails</param>
-        /// <param name="emailTemplate">Email data to be sent out</param>
-        /// <param name="recipient">Email of a recipient</param>
+        /// <inheritdoc />
+        /// <remarks>Uses Mailkit as an smtp client</remarks>
         public void Send(IEmailAccount emailAccount, IEmailTemplate emailTemplate, string recipient)
+            => Send(emailAccount, emailTemplate, recipient, null);
+
+        /// <inheritdoc />
+        public void Send(IEmailAccount emailAccount, IEmailTemplate emailTemplate, string recipient, Action<string> logger)
         {
-            Task.Run(() =>
+            Task.Run(async () =>
+            {
+                await SendAsync(emailAccount, emailTemplate, recipient, logger);
+            });
+        }
+
+        /// <inheritdoc />
+        public Task SendAsync(IEmailAccount emailAccount, IEmailTemplate emailTemplate, string recipient)
+            => SendAsync(emailAccount, emailTemplate, recipient, null);
+
+        /// <inheritdoc />
+        public async Task SendAsync(IEmailAccount emailAccount, IEmailTemplate emailTemplate, string recipient, Action<string> logger)
+        {
+            await Task.Run(() =>
             {
                 var msg = new MimeMessage();
                 msg.To.Add(new MailboxAddress(recipient));
@@ -62,7 +73,7 @@ namespace Cartomatic.Utils.Email.MailKit
                     {
                         //ignore
                     }
-                    
+
                 }
             });
         }

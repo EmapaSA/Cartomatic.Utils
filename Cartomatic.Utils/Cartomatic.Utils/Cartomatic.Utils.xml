@@ -1454,6 +1454,88 @@
             <param name="b"></param>
             <returns></returns>
         </member>
+        <member name="M:Cartomatic.Utils.Drawing.ColorUtilsExtensions.OpacityToAlpha(System.Double)">
+            <summary>
+            Converts opacity to alpha; opacity should be expressed as a value [0, 1]
+            </summary>
+            <param name="opacity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.ColorUtilsExtensions.OpacityToAlpha(System.Nullable{System.Double})">
+            <summary>
+            Converts opacity to alpha; opacity should be expressed as a value [0, 1]
+            </summary>
+            <param name="opacity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.FontUtilsExtensions.GetFontStyle(System.String)">
+            <summary>
+            Works out a font style from string
+            </summary>
+            <param name="styleName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.FontUtilsExtensions.GetStringFormat(System.String)">
+            <summary>
+            Works out a string format position from string
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.FontUtilsExtensions.GetFontSizeForResolution(System.Single,System.Int32)">
+            <summary>
+            Returns a font size for given resolution
+            </summary>
+            <param name="fSize"></param>
+            <param name="dpi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.GraphicsDrawingExtensions.DrawShadow(System.Drawing.Graphics,System.Drawing.Drawing2D.GraphicsPath,System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws a shadow around a path
+            </summary>
+            <param name="g"></param>
+            <param name="path"></param>
+            <param name="color"></param>
+            <param name="offsetX"></param>
+            <param name="offsetY"></param>
+            <param name="feathering"></param>
+            <param name="opacity"></param>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.GraphicsDrawingExtensions.DrawShadow(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Draws a shadow around a rect
+            </summary>
+            <param name="g"></param>
+            <param name="rect"></param>
+            <param name="color"></param>
+            <param name="offsetX"></param>
+            <param name="offsetY"></param>
+            <param name="feathering"></param>
+            <param name="opacity"></param>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.GraphicsDrawingExtensions.DrawGlow(System.Drawing.Graphics,System.Drawing.Drawing2D.GraphicsPath,System.Drawing.Color,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Draws a glow around an object
+            </summary>
+            <param name="g"></param>
+            <param name="path"></param>
+            <param name="color"></param>
+            <param name="feathering"></param>
+            <param name="opacity"></param>
+            <param name="fillPath"></param>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.GraphicsDrawingExtensions.DrawGlow(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Draws a glow around a rectangle
+            </summary>
+            <param name="g"></param>
+            <param name="rect"></param>
+            <param name="color"></param>
+            <param name="feathering"></param>
+            <param name="opacity"></param>
+            <param name="fillPath"></param>
+        </member>
         <member name="T:Cartomatic.Utils.Drawing.ImagingExtensions">
             <summary>
             imaging utils
@@ -1463,6 +1545,20 @@
             <summary>
             returns ImageCodecInfo for given mime; used for setting up output format of image file
             </summary>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.PenUtilsExtensions.GetLineJoin(System.String)">
+            <summary>
+            Gets a line join from a string
+            </summary>
+            <param name="lineJoin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Drawing.RectangleExtensions.ToPath(System.Drawing.Rectangle)">
+            <summary>
+            Converts a rectangle to path
+            </summary>
+            <param name="r"></param>
+            <returns></returns>
         </member>
         <member name="M:Cartomatic.Utils.Drawing.ResolutionExtensions.DotsPerInchToDotsPerMm(System.Int32)">
             <summary>
@@ -1754,7 +1850,7 @@
             Email sending functionality
             </summary>
         </member>
-        <member name="M:Cartomatic.Utils.Email.EmailSender.Send(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String)">
+        <member name="M:Cartomatic.Utils.Email.EmailSender.Send(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String,System.Action{System.String})">
             <summary>
             Sends an email to the recipient. Email is sent in a fire'n'forget manner.
             Note: in some scenarios fire'n'forget means the email may not eventually be sent at all.
@@ -1763,7 +1859,7 @@
             <param name="emailTemplate">Email data to be sent out</param>
             <param name="recipient">Email of a recipient</param>
         </member>
-        <member name="M:Cartomatic.Utils.Email.EmailSender.SendAsync(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String)">
+        <member name="M:Cartomatic.Utils.Email.EmailSender.SendAsync(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String,System.Action{System.String})">
             <summary>
             Sends an email
             </summary>
@@ -1859,6 +1955,32 @@
             <param name="emailTemplate"></param>
             <param name="recipient"></param>
         </member>
+        <member name="M:Cartomatic.Utils.Email.IEmailSender.Send(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String,System.Action{System.String})">
+            <summary>
+            Sends an email
+            </summary>
+            <param name="emailAccount"></param>
+            <param name="emailTemplate"></param>
+            <param name="recipient"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Cartomatic.Utils.Email.IEmailSender.SendAsync(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String)">
+            <summary>
+            Sends an email
+            </summary>
+            <param name="emailAccount"></param>
+            <param name="emailTemplate"></param>
+            <param name="recipient"></param>
+        </member>
+        <member name="M:Cartomatic.Utils.Email.IEmailSender.SendAsync(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String,System.Action{System.String})">
+            <summary>
+            Sends an email
+            </summary>
+            <param name="emailAccount"></param>
+            <param name="emailTemplate"></param>
+            <param name="recipient"></param>
+            <param name="logger"></param>
+        </member>
         <member name="T:Cartomatic.Utils.Email.IEmailTemplate">
             <summary>
             Enforces Email template 
@@ -1892,14 +2014,17 @@
             </summary>
         </member>
         <member name="M:Cartomatic.Utils.Email.MailKit.EmailSender.Send(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String)">
-            <summary>
-            Sends an email to the recipient. Email is sent in a fire'n'forget manner.
-            Note: in some scenarios fire'n'forget means the email may not eventually be sent at all.
-            Uses Mailkit as an smtp client
-            </summary>
-            <param name="emailAccount">EmailAccount deails</param>
-            <param name="emailTemplate">Email data to be sent out</param>
-            <param name="recipient">Email of a recipient</param>
+            <inheritdoc />
+            <remarks>Uses Mailkit as an smtp client</remarks>
+        </member>
+        <member name="M:Cartomatic.Utils.Email.MailKit.EmailSender.Send(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String,System.Action{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Cartomatic.Utils.Email.MailKit.EmailSender.SendAsync(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cartomatic.Utils.Email.MailKit.EmailSender.SendAsync(Cartomatic.Utils.Email.IEmailAccount,Cartomatic.Utils.Email.IEmailTemplate,System.String,System.Action{System.String})">
+            <inheritdoc />
         </member>
         <member name="T:Cartomatic.Utils.EmbeddedResource.ObjectExtensions">
             <summary>
@@ -2081,6 +2206,204 @@
             <typeparam name="T"></typeparam>
             <param name="collection"></param>
             <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.Execute``1(System.Net.FtpWebRequest,Cartomatic.Utils.Ftp.IFtpRequestSettings,System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Executes a configured task with some extra ssl related tweaks
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="ftpReq"></param>
+            <param name="ftpRequestSettings"></param>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.CanConnectAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings)">
+            <summary>
+            Whether or not a connection to an ftp server can be established
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.DownloadFileAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String,System.String)">
+            <summary>
+            Downloads a file from ftp
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="fName"></param>
+            <param name="savePath"></param>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.UploadFileAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            Uploads a file to ftp
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.EntryExistsAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            Whether or not a file system entry exists in given ftp context
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="entry"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.FileExistsAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            Whether or not a file exists in given ftp context
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="fName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.DirectoryExistsAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            Whether or not a directory exists in given ftp context
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="ftpDir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.CreateDirectoryAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            Creates an ftp directory
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="ftpDir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.GetEntryLastModifiedTimeAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            Returns a last modified time for an entry
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="entryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.GetFileLastModifiedTimeAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            returns file last modified time
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="fName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.GetDirLastModifiedTimeAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            returns directory last modified time
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="dirName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.GetEntriesAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings)">
+            <summary>
+            Gets a list of entries available at given ftp context
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.DeleteFileAsync(Cartomatic.Utils.Ftp.IFtpRequestSettings,System.String)">
+            <summary>
+            deletes a file
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <param name="fName"></param>
+            <returns>Whether or not file deletion succeeded</returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.GetEffectiveUri(Cartomatic.Utils.Ftp.IFtpRequestSettings)">
+            <summary>
+            Gets an effective URI off ftp request cfg object
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Ftp.FtpUtils.ConfigureRequest(Cartomatic.Utils.Ftp.IFtpRequestSettings)">
+            <summary>
+            Configures an ftp request object
+            </summary>
+            <param name="ftpRequestSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.Method">
+            <summary>
+            ftp method to execute; see WebRequestMethods.Ftp for details
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.Uri">
+            <summary>
+            Uri of ftp server
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.SubPath">
+            <summary>
+            Sub path
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.UserName">
+            <summary>
+            FTP user name
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.Password">
+            <summary>
+            FTP user pass
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.UseBinary">
+            <summary>
+            Specifies data type for file transfer; defaults to true
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.UsePassive">
+            <summary>
+            behavior of client app data transfer process; defaults to true
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.KeepAlive">
+            <summary>
+            Whether or not a connection to the server should be closed after a request completes; defaults to true
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.EnableSsl">
+            <summary>
+            Whether or not enable ssl explicitly (instead of implicitly via uri schema - ftps, fteps, etc)
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.IFtpRequestSettings.IgnoreInvalidSslCertificate">
+            <summary>
+            Whether or not should ignore invalid ssl certs; this is handy when a server uses a self signed cert or another cert considered to be weak / untrusted
+            </summary>
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.Method">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.Uri">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.SubPath">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.UserName">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.Password">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.UseBinary">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.UsePassive">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.KeepAlive">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.EnableSsl">
+            <inheritdoc />
+        </member>
+        <member name="P:Cartomatic.Utils.Ftp.FtpRequestSettings.IgnoreInvalidSslCertificate">
+            <inheritdoc />
         </member>
         <member name="T:Cartomatic.Utils.Git">
             <summary>
@@ -2455,6 +2778,42 @@
             <param name="n"></param>
             <param name="min"></param>
             <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Number.NumberExtensions.CloseEnough(System.Double,System.Double,System.Nullable{System.Double})">
+            <summary>
+            Whether or not 2 doubles can be considered equal
+            </summary>
+            <param name="number1"></param>
+            <param name="number2"></param>
+            <param name="tolerance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Number.NumberExtensions.CloseEnough(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Whether or not 2 doubles can be considered equal
+            </summary>
+            <param name="number1"></param>
+            <param name="number2"></param>
+            <param name="tolerance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Number.NumberExtensions.CloseEnough(System.Single,System.Single,System.Nullable{System.Single})">
+            <summary>
+            Whether or not 2 floats can be considered equal
+            </summary>
+            <param name="number1"></param>
+            <param name="number2"></param>
+            <param name="tolerance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Cartomatic.Utils.Number.NumberExtensions.CloseEnough(System.Nullable{System.Single},System.Nullable{System.Single},System.Nullable{System.Single})">
+            <summary>
+            Whether or not 2 floats can be considered equal
+            </summary>
+            <param name="number1"></param>
+            <param name="number2"></param>
+            <param name="tolerance"></param>
             <returns></returns>
         </member>
         <member name="T:Cartomatic.Utils.Number.StringExtensions">

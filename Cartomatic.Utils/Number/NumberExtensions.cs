@@ -37,5 +37,47 @@ namespace Cartomatic.Utils.Number
         {
             return (float) ((double) n).FitInRange(min, max);
         }
+
+        private const double FLOAT_COMPARISON_PRECISION = 0.000000001;
+
+        /// <summary>
+        /// Whether or not 2 doubles can be considered equal
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <param name="tolerance"></param>
+        /// <returns></returns>
+        public static bool CloseEnough(this double number1, double number2, double? tolerance = null)
+            => Math.Abs(number1 - number2) <= (tolerance ?? FLOAT_COMPARISON_PRECISION);
+
+        /// <summary>
+        /// Whether or not 2 doubles can be considered equal
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <param name="tolerance"></param>
+        /// <returns></returns>
+        public static bool CloseEnough(this double? number1, double? number2, double? tolerance = null)
+            => number1.HasValue && number2.HasValue && Math.Abs(number1.Value - number2.Value) <= (tolerance ?? FLOAT_COMPARISON_PRECISION);
+
+        /// <summary>
+        /// Whether or not 2 floats can be considered equal
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <param name="tolerance"></param>
+        /// <returns></returns>
+        public static bool CloseEnough(this float number1, float number2, float? tolerance = null)
+            => Math.Abs(number1 - number2) <= (tolerance ?? FLOAT_COMPARISON_PRECISION);
+
+        /// <summary>
+        /// Whether or not 2 floats can be considered equal
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <param name="tolerance"></param>
+        /// <returns></returns>
+        public static bool CloseEnough(this float? number1, float? number2, float? tolerance = null)
+            => number1.HasValue && number2.HasValue && Math.Abs(number1.Value - number2.Value) <= (tolerance ?? FLOAT_COMPARISON_PRECISION);
     }
 }

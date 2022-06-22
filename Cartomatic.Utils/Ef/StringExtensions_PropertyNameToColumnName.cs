@@ -25,11 +25,7 @@ namespace Cartomatic.Utils.Ef
             {
                 if ( 
                     char.IsUpper(propertyName[idx]) && //if char is upper case
-                    idx > 0 && !char.IsUpper(propertyName[idx - 1]) && //and previous was not upper case 
-                    (
-                        (idx < propertyName.Length - 2 && !char.IsUpper(propertyName[idx + 1])) || //and next is lowercase
-                        idx == propertyName.Length - 1 // or this is the last one
-                    ) 
+                    idx > 0 && !char.IsUpper(propertyName[idx - 1])
                 )
                 {
                     chars.Add('_');
