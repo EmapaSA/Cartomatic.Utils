@@ -2909,7 +2909,7 @@
             raw IRestResponse
             </summary>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},RestSharp.Serializers.ISerializer)">
             <summary>
             Calls a rest API
             </summary>
@@ -2920,9 +2920,10 @@
             <param name="data"></param>
             <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
             <param name="customHeaders"></param>
+            <param name="serializer"></param>
             <returns></returns>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean)">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean,RestSharp.Serializers.ISerializer)">
             <summary>
             Calls a rest API
             </summary>
@@ -2937,9 +2938,10 @@
             <param name="headersToSkip"></param>
             <param name="transferAuthHdr">Whether or not auth header should be automatically transferred to outgoing request; when a custom auth header is provided it will always take precedence</param>
             <param name="transferRequestHdrs">Whether or not should auto transfer request headers so they are sent out </param>
+            <param name="serializer"></param>
             <returns></returns>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},RestSharp.Serializers.ISerializer)">
             <summary>
             Calls a REST API, auto deserializes output
             </summary>
@@ -2951,9 +2953,10 @@
             <param name="data"></param>
             <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
             <param name="customHeaders"></param>
+            <param name="serializer"></param>
             <returns></returns>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean)">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean,RestSharp.Serializers.ISerializer)">
             <summary>
             Calls a REST API, auto deserializes output
             </summary>
@@ -2969,6 +2972,7 @@
             <param name="headersToSkip">header names to be skipped when transferring</param>
             <param name="transferAuthHdr"></param>
             <param name="transferRequestHdrs">Whether or not should auto transfer request headers so they are sent out </param>
+            <param name="serializer"></param>
             <returns></returns>
         </member>
         <member name="M:Cartomatic.Utils.RestApi.ExtractResponseContentAsString(RestSharp.IRestResponse)">
