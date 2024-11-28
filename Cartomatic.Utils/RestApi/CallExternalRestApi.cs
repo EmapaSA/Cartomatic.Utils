@@ -129,6 +129,7 @@ namespace Cartomatic.Utils
         /// <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
         /// <param name="customHeaders"></param>
         /// <param name="serializer"></param>
+        /// <param name="timeout"></param>
         /// <returns></returns>
         public static async Task<IRestResponse> RestApiCall(
             string url,
@@ -137,11 +138,12 @@ namespace Cartomatic.Utils
             Dictionary<string, object> queryParams = null,
             object data = null, string authToken = null,
             Dictionary<string, string> customHeaders = null,
-            ISerializer serializer = null
+            ISerializer serializer = null,
+            int? timeout = null
         )
         {
             return await RestApiCall(null, url, route, method, queryParams, data, authToken, customHeaders, null,
-                false, false, serializer);
+                false, false, serializer, timeout);
         }
 
         /// <summary>
@@ -159,6 +161,7 @@ namespace Cartomatic.Utils
         /// <param name="transferAuthHdr">Whether or not auth header should be automatically transferred to outgoing request; when a custom auth header is provided it will always take precedence</param>
         /// <param name="transferRequestHdrs">Whether or not should auto transfer request headers so they are sent out </param>
         /// <param name="serializer"></param>
+        /// <param name="timeout"></param>
         /// <returns></returns>
         public static async Task<IRestResponse> RestApiCall(
             HttpRequest origHttpRequest,
@@ -172,11 +175,15 @@ namespace Cartomatic.Utils
             List<string> headersToSkip = null,
             bool transferAuthHdr = true,
             bool transferRequestHdrs = true,
-            ISerializer serializer = null
+            ISerializer serializer = null,
+            int? timeout = null
         )
         {
             var client = new RestClient($"{url}{(url.EndsWith("/") ? "" : "/")}{route}");
-            var restRequest = new RestRequest(method);
+            var restRequest = new RestRequest(method)
+            {
+                Timeout = timeout ?? 0
+            };
 
             //assuming here only json ap input is supported.
             restRequest.AddHeader("Content-Type", "application/json");
@@ -243,7 +250,8 @@ namespace Cartomatic.Utils
         /// <param name="data"></param>
         /// <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
         /// <param name="customHeaders"></param>
-        /// <param name="serializer"></param>
+        /// <param name="serializer">Serializer used to serialize the outgoing payload</param>
+        /// <param name="timeout"></param>
         /// <returns></returns>
         public static async Task<ApiCallOutput<TOut>> RestApiCall<TOut>(
             string url,
@@ -253,11 +261,13 @@ namespace Cartomatic.Utils
             object data = null,
             string authToken = null,
             Dictionary<string, string> customHeaders = null,
-            ISerializer serializer = null
+            ISerializer serializer = null,
+            int? timeout = null,
+            params JsonConverter[] converters
         )
         {
             return await RestApiCall<TOut>(null, url, route, method, queryParams, data, authToken, customHeaders,
-                null, false, false, serializer);
+                null, false, false, serializer, timeout, converters);
         }
 
         /// <summary>
@@ -289,7 +299,9 @@ namespace Cartomatic.Utils
             List<string> headersToSkip = null,
             bool transferAuthHdr = true,
             bool transferRequestHdrs = true,
-            ISerializer serializer = null
+            ISerializer serializer = null,
+            int? timeout = null,
+            params JsonConverter[] converters
         )
         {
             //because of some reason RestSharp is bitching around when deserializing the arr / list output...
@@ -297,13 +309,20 @@ namespace Cartomatic.Utils
 
             var output = default(TOut);
 
-            var resp = await RestApiCall(origHttpRequest, url, route, method, queryParams, data, authToken, customHeaders, headersToSkip, transferAuthHdr, transferRequestHdrs, serializer);
+            var resp = await RestApiCall(origHttpRequest, url, route, method, queryParams, data, authToken, customHeaders, headersToSkip, transferAuthHdr, transferRequestHdrs, serializer, timeout);
             
             if (resp.IsSuccessful)
             {
                 var content = ExtractResponseContentAsString(resp);
-                if (!string.IsNullOrWhiteSpace(content))
-                    output = (TOut) Newtonsoft.Json.JsonConvert.DeserializeObject(content, typeof(TOut));
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(content))
+                        output = (TOut)Newtonsoft.Json.JsonConvert.DeserializeObject(content, typeof(TOut));
+                }
+                catch
+                {
+                    output = (TOut)Newtonsoft.Json.JsonConvert.DeserializeObject(content, typeof(TOut), converters);
+                }
             }
 
             return new ApiCallOutput<TOut>

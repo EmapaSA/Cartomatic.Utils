@@ -149,7 +149,15 @@ namespace Cartomatic.Utils.ApiClient
             client.SetConfig(cfg);
             client.Init();
 
-            ClientInstances[cfg] = client;
+            try
+            {
+                //in some scenarios this seems to be uninitialized
+                ClientInstances[cfg] = client;
+            }
+            catch
+            {
+                //ignore
+            }
 
             return client;
         }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using Cartomatic.Utils.Number;
 
 #if NETFULL
 using System.Data.Entity;
@@ -337,7 +337,7 @@ namespace Cartomatic.Utils.Filtering
 
             //Lower than / greater than / equals; applies to numbers and dates
             else if ((filter.Operator == "lt" || filter.Operator == "gt" || filter.Operator == "eq")
-                     && (filter.Value.IsNumeric() || filter.Value is DateTime))
+                     && (filter.Value is int || filter.Value is long || filter.Value is DateTime || filter.Value.IsNumeric()))
             {
                 //{"operator":"lt","value":10,"property":"name"}
                 //{"operator":"gt","value":10,"property":"name"}

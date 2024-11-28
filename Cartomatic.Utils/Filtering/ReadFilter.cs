@@ -47,7 +47,7 @@ namespace Cartomatic.Utils.Filtering
         public bool AndJoin { get; set; }
 
         /// <summary>
-        /// nested filters that form one condtintion; because the default filter behavior is just joining all the filters in the greedy way (OR), using nested filters
+        /// nested filters that form one condition; because the default filter behavior is just joining all the filters in the greedy way (OR), using nested filters
         /// makes sense when used with ExactMatch. this way it is possible to provide filters such as (some filter AND (some other filter OR another one) AND so on...) AND other filters
         /// </summary>
         public List<ReadFilter> NestedFilters { get; set; }

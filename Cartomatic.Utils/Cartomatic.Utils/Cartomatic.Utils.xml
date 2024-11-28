@@ -2190,7 +2190,7 @@
         </member>
         <member name="P:Cartomatic.Utils.Filtering.ReadFilter.NestedFilters">
             <summary>
-            nested filters that form one condtintion; because the default filter behavior is just joining all the filters in the greedy way (OR), using nested filters
+            nested filters that form one condition; because the default filter behavior is just joining all the filters in the greedy way (OR), using nested filters
             makes sense when used with ExactMatch. this way it is possible to provide filters such as (some filter AND (some other filter OR another one) AND so on...) AND other filters
             </summary>
         </member>
@@ -2909,7 +2909,7 @@
             raw IRestResponse
             </summary>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},RestSharp.Serializers.ISerializer)">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},RestSharp.Serializers.ISerializer,System.Nullable{System.Int32})">
             <summary>
             Calls a rest API
             </summary>
@@ -2921,9 +2921,10 @@
             <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
             <param name="customHeaders"></param>
             <param name="serializer"></param>
+            <param name="timeout"></param>
             <returns></returns>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean,RestSharp.Serializers.ISerializer)">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean,RestSharp.Serializers.ISerializer,System.Nullable{System.Int32})">
             <summary>
             Calls a rest API
             </summary>
@@ -2939,9 +2940,10 @@
             <param name="transferAuthHdr">Whether or not auth header should be automatically transferred to outgoing request; when a custom auth header is provided it will always take precedence</param>
             <param name="transferRequestHdrs">Whether or not should auto transfer request headers so they are sent out </param>
             <param name="serializer"></param>
+            <param name="timeout"></param>
             <returns></returns>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},RestSharp.Serializers.ISerializer)">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},RestSharp.Serializers.ISerializer,System.Nullable{System.Int32},Newtonsoft.Json.JsonConverter[])">
             <summary>
             Calls a REST API, auto deserializes output
             </summary>
@@ -2953,10 +2955,11 @@
             <param name="data"></param>
             <param name="authToken">Allows for performing authorized calls against rest apis - should be in a form of Scheme Token, for example Bearer XXX, Basic XXX, etc</param>
             <param name="customHeaders"></param>
-            <param name="serializer"></param>
+            <param name="serializer">Serializer used to serialize the outgoing payload</param>
+            <param name="timeout"></param>
             <returns></returns>
         </member>
-        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean,RestSharp.Serializers.ISerializer)">
+        <member name="M:Cartomatic.Utils.RestApi.RestApiCall``1(Microsoft.AspNetCore.Http.HttpRequest,System.String,System.String,RestSharp.Method,System.Collections.Generic.Dictionary{System.String,System.Object},System.Object,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.List{System.String},System.Boolean,System.Boolean,RestSharp.Serializers.ISerializer,System.Nullable{System.Int32},Newtonsoft.Json.JsonConverter[])">
             <summary>
             Calls a REST API, auto deserializes output
             </summary>

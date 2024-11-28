@@ -19,9 +19,7 @@ namespace Cartomatic.Utils.Number
         /// <returns></returns>
         public static bool IsNumeric(this string wouldBeANumber)
         {
-            double num;
-
-            return double.TryParse(wouldBeANumber, System.Globalization.NumberStyles.Any, NumberFormatInfo.InvariantInfo, out num);
+            return double.TryParse(wouldBeANumber, System.Globalization.NumberStyles.Any, NumberFormatInfo.InvariantInfo, out _);
         }
 
         /// <summary>
