@@ -18,7 +18,8 @@ namespace Cartomatic.Utils.Data.Tests
         {
             var dbc = new DataSourceCredentials()
             {
-                DataSourceProvider = DataSourceProvider.Npgsql
+                DataSourceProvider = DataSourceProvider.Npgsql,
+                ServerHost = "localhost"
             };
 
             var conn = dbc.GetDbConnectionObject();
