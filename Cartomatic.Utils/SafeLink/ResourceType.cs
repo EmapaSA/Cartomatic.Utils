@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cartomatic.Utils.SafeLink
+﻿namespace Cartomatic.Utils.SafeLink
 {
 #pragma warning disable 1591
     public enum ResourceType

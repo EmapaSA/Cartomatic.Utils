@@ -1,10 +1,4 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading.Tasks;
-
-namespace Cartomatic.Utils.ApiClient
+﻿namespace Cartomatic.Utils.ApiClient
 {
     /// <summary>
     /// Api client base

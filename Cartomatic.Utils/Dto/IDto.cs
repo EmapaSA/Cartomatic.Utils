@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cartomatic.Utils.Dto
+﻿namespace Cartomatic.Utils.Dto
 {
     /// <summary>
     /// To be used on DTO clases. Enables automated to / from DTO ops

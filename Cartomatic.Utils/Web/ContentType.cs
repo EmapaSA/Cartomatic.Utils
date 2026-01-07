@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cartomatic.Utils.Web
+﻿namespace Cartomatic.Utils.Web
 {
     public static class ContentType
     {

@@ -2,13 +2,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;netstandard2.0;net462;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0;net6.0;net481</TargetFrameworks>
     <Description>some utils simplifying common tasks
 use at your own risk...</Description>
     <RepositoryUrl>https://github.com/cartomatic/Cartomatic.Utils</RepositoryUrl>
     <License>https://github.com/cartomatic/Cartomatic.Utils/blob/master/license.txt</License>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.9</Version>
+    <Version>1.2.1</Version>
     <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
@@ -19,220 +19,226 @@ use at your own risk...</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.5.1" />
-    <PackageReference Include="MailKit" Version="2.4.1" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <!--<PackageReference Include="msbump" Version="2.3.2" />-->
-    <PackageReference Include="newtonsoft.json" Version="12.0.3" />
     
-    <PackageReference Include="restsharp" Version="106.10.0" />
-    <PackageReference Include="Rollbar" Version="3.7.0" />
-    <PackageReference Include="System.Data.Common" Version="4.3.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="MailKit" Version="4.14.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="newtonsoft.json" Version="13.0.4" />
+    <PackageReference Include="restsharp" Version="106.15.0" />
+    <PackageReference Include="Rollbar" Version="5.2.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <PackageReference Include="npgsql" Version="8.0.8" />
   </ItemGroup>
 
 
-    <!--.NET 6 refs, compilation flags & build opts-->
+	<!--.NET 6 refs, compilation flags & build opts-->
+			
     <PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
         <DefineConstants>NET6_0</DefineConstants>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
 
-        <PackageReference Include="Microsoft.AspNetCore.Mvc">
-            <Version>2.2.0</Version>
-        </PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc">
+			<Version>2.3.8</Version>
+		</PackageReference>
 
-        <PackageReference Include="npgsql" Version="6.0.1" />
+		<PackageReference Include="Audit.EntityFramework.Core">
+			<Version>19.0.1</Version>
+		</PackageReference>
 
-        <PackageReference Include="Audit.EntityFramework.Core">
-            <Version>19.0.1</Version>
-        </PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore">
+			<Version>6.0.36</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
+			<Version>6.0.36</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
+			<Version>6.0.36</Version>
+		</PackageReference>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+			<Version>6.0.29</Version>
+		</PackageReference>
 
-        <PackageReference Include="Microsoft.EntityFrameworkCore">
-            <Version>6.0.0</Version>
-        </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
-            <Version>6.0.0</Version>
-        </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
-            <Version>6.0.0</Version>
-        </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Configuration">
-            <Version>6.0.0</Version>
-        </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
-            <Version>6.0.0</Version>
-        </PackageReference>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
-            <Version>6.0.1</Version>
-        </PackageReference>
-        <PackageReference Include="System.Drawing.Common">
-            <Version>6.0.0</Version>
-        </PackageReference>
+		<PackageReference Include="System.Drawing.Common">
+			<Version>10.0.1</Version>
+		</PackageReference>
 
-        <PackageReference Include="Microsoft.Build.Framework" Version="16.4.0" />
-        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.4.0" />
+		<PackageReference Include="Microsoft.Build.Framework" Version="18.0.2" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
 
-        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
-            <Version>6.0.0</Version>
-        </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json">
-            <Version>6.0.0</Version>
-        </PackageReference>
-    </ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json">
+			<Version>8.0.0</Version>
+		</PackageReference>
 
+		<PackageReference Include="System.Text.RegularExpressions">
+			<Version>4.3.1</Version>
+		</PackageReference>
+	</ItemGroup>
 
-  <!--.NET 5 refs, compilation flags & build opts-->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net5.0'">
-    <DefineConstants>NET5_0</DefineConstants>
-  </PropertyGroup>
+	<!--.NET 5 refs, compilation flags & build opts-->
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net5.0'">
+		<DefineConstants>NET5_0</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
 
-      <PackageReference Include="Microsoft.AspNetCore.Mvc">
-          <Version>2.2.0</Version>
-      </PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc">
+			<Version>2.3.8</Version>
+		</PackageReference>
 
-      <PackageReference Include="npgsql" Version="5.0.0" />
+		<PackageReference Include="Audit.EntityFramework.Core">
+			<Version>15.3.0</Version>
+		</PackageReference>
 
-    <PackageReference Include="Audit.EntityFramework.Core">
-      <Version>14.9.1</Version>
-    </PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore">
+			<Version>5.0.17</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
+			<Version>5.0.17</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
+			<Version>5.0.17</Version>
+		</PackageReference>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+			<Version>5.0.10</Version>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
-      <Version>5.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Drawing.Common">
-      <Version>6.0.0</Version>
-    </PackageReference>
+		<PackageReference Include="System.Drawing.Common">
+			<Version>10.0.1</Version>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.Build.Framework" Version="16.4.0" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.4.0" />
+		<PackageReference Include="Microsoft.Build.Framework" Version="18.0.2" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
 
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
-      <Version>3.1.0</Version>
-    </PackageReference>
-  </ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json">
+			<Version>8.0.0</Version>
+		</PackageReference>
 
-  <!--.NET standard 3.1 refs, compilation flags & build opts-->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1'">
-    <DefineConstants>NETCOREAPP3_1</DefineConstants>
-  </PropertyGroup>
+		<PackageReference Include="System.Text.RegularExpressions">
+			<Version>4.3.1</Version>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+	<!--.NET standard 3.1 refs, compilation flags & build opts-->
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1'">
+		<DefineConstants>NETCOREAPP3_1</DefineConstants>
+	</PropertyGroup>
 
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="3.1.0" />
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
 
-    <PackageReference Include="npgsql" Version="8.0.7" />
+		<PackageReference Include="Microsoft.AspNetCore.App" Version="3.1.0" />
 
-    <PackageReference Include="Audit.EntityFramework.Core">
-      <Version>14.9.1</Version>
-    </PackageReference>
+		<PackageReference Include="Audit.EntityFramework.Core">
+			<Version>15.3.0</Version>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Drawing.Common">
-      <Version>6.0.0</Version>
-    </PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore">
+			<Version>3.1.32</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
+			<Version>3.1.32</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
+			<Version>3.1.32</Version>
+		</PackageReference>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+			<Version>3.1.18</Version>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.Build.Framework" Version="16.4.0" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.4.0" />
+		<PackageReference Include="Microsoft.Build.Framework" Version="18.0.2" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
 
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
-      <Version>3.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
-      <Version>3.1.0</Version>
-    </PackageReference>
-  </ItemGroup>
+		<PackageReference Include="System.Drawing.Common">
+			<Version>10.0.1</Version>
+		</PackageReference>
 
+		<PackageReference Include="Microsoft.Extensions.Configuration">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+			<Version>8.0.0</Version>
+		</PackageReference>
 
-  <!--.NET standard 2.0 refs, compilation flags & build opts-->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>NETSTANDARD2_0</DefineConstants>
-  </PropertyGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json">
+			<Version>8.0.0</Version>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+	<!--.NET standard 2.0 refs, compilation flags & build opts-->
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+		<DefineConstants>NETSTANDARD2_0</DefineConstants>
+	</PropertyGroup>
 
-    <PackageReference Include="npgsql" Version="4.1.2" />
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
 
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>2.1.4</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
-      <Version>2.1.4</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
-      <Version>2.1.4</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration">
-      <Version>2.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
-      <Version>2.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
-      <Version>2.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="System.Drawing.Common">
-      <Version>6.0.0</Version>
-    </PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc">
+			<Version>2.3.8</Version>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.AspNetCore.Mvc">
-      <Version>2.1.3</Version>
-    </PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore">
+			<Version>2.3.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory">
+			<Version>2.3.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
+			<Version>2.3.0</Version>
+		</PackageReference>
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL">
+			<Version>2.2.4</Version>
+		</PackageReference>
 
-    <PackageReference Include="Microsoft.Build.Framework" Version="15.8.166" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.8.166" />
+		<PackageReference Include="Microsoft.Build.Framework" Version="18.0.2" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
 
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
-      <Version>2.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
-      <Version>2.1.1</Version>
-    </PackageReference>
-  </ItemGroup>
+		<PackageReference Include="System.Drawing.Common">
+			<Version>10.0.1</Version>
+		</PackageReference>
+
+		<PackageReference Include="Microsoft.Extensions.Configuration">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions">
+			<Version>8.0.0</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json">
+			<Version>8.0.0</Version>
+		</PackageReference>
+
+		<PackageReference Include="System.Text.RegularExpressions">
+			<Version>4.3.1</Version>
+		</PackageReference>
+	</ItemGroup>
 
 
-  <!--NET 4.6.2 refs, compilation flags & build opts-->
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net462'">
-    <DefineConstants>NET462;NETFULL</DefineConstants>
+  <!--NET 4.8.1 refs, compilation flags & build opts-->
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net481'">
+    <DefineConstants>NET481;NETFULL</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <DocumentationFile>Cartomatic.Utils\Cartomatic.Utils.xml</DocumentationFile>
@@ -240,13 +246,11 @@ use at your own risk...</Description>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.0|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462' ">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net481' ">
 
-    <PackageReference Include="npgsql" Version="4.1.2" />
-
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.6" />
-    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.6" />
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
 
     <Reference Include="System.Configuration" />
   </ItemGroup>

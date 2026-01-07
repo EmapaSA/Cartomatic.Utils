@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Cartomatic.Utils.Data;
+﻿using Cartomatic.Utils.Data;
 
 #if NETFULL
 using System.Data.Entity;

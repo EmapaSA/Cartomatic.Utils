@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Cartomatic.Utils.Email;
+﻿using Cartomatic.Utils.Email;
 
 namespace Cartomatic.Utils.ApiClient
 {

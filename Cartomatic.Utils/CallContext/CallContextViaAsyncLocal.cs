@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Concurrent;
 using System.Threading;
 
 namespace Cartomatic.Utils
 {
-#if NETSTANDARD2_0 || NETCOREAPP3_1
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER
     /// <summary>
     /// Provides a way to set contextual data that flows with the call and 
     /// async context of a test or invocation.
@@ -30,7 +27,7 @@ namespace Cartomatic.Utils
         /// <param name="name">The name of the item in the call context.</param>
         /// <returns>The object in the call context associated with the specified name, or <see langword="null"/> if not found.</returns>
         public static object GetData(string name) =>
-            State.TryGetValue(name, out AsyncLocal<object> data) ? data.Value : null;
+            State.TryGetValue(name, out var data) ? data.Value : null;
     }
 
     /// <summary>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
-using System.Text;
-
-namespace Cartomatic.Utils.Drawing
+﻿namespace Cartomatic.Utils.Drawing
 {
     public static class FontUtilsExtensions
     {

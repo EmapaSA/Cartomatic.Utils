@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 #if NETSTANDARD2_0 || NETCOREAPP3_1
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +12,6 @@ using Microsoft.EntityFrameworkCore.Storage;
 #endif
 
 #if NETFULL
-using System.Data.Entity;
 using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text;
+﻿using System.IO;
 
 #if NETSTANDARD2_0 || NETCOREAPP3_0
 using Microsoft.Build.Framework;

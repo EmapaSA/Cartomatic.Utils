@@ -1,12 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Text;
 using Cartomatic.Utils.Data;
-
-
 #if NETSTANDARD2_0 || NETCOREAPP3_1
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;

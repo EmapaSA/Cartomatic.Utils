@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cartomatic.Utils.Sorting
+﻿namespace Cartomatic.Utils.Sorting
 {
     /// <summary>
     /// abstracts sort properties applied when reading data

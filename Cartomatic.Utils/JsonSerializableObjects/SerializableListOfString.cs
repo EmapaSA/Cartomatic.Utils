@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cartomatic.Utils.JsonSerializableObjects
+﻿namespace Cartomatic.Utils.JsonSerializableObjects
 {
     /// <summary>
     /// Explicit implementation of a serializable list of string

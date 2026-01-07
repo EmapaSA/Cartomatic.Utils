@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using MimeKit;
 using MimeKit.Text;
@@ -42,8 +35,8 @@ namespace Cartomatic.Utils.Email.MailKit
             await Task.Run(() =>
             {
                 var msg = new MimeMessage();
-                msg.To.Add(new MailboxAddress(recipient));
-                msg.From.Add(new MailboxAddress(emailAccount.Sender));
+                msg.To.Add(new MailboxAddress(recipient, recipient));
+                msg.From.Add(new MailboxAddress(emailAccount.Sender, emailAccount.Sender));
 
                 msg.Subject = emailTemplate.Title;
                 msg.Body = new TextPart(emailTemplate.IsBodyHtml ? TextFormat.Html : TextFormat.Plain)

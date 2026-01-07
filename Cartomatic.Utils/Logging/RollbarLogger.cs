@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
-using System.Text;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Rollbar;
+
+#if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
+using Microsoft.Extensions.Configuration;
+#endif
 
 namespace Cartomatic.Utils
 {
@@ -88,13 +87,18 @@ namespace Cartomatic.Utils
             {
                 try
                 {
-                    RollbarLocator.RollbarInstance.Configure(new RollbarConfig
+                    RollbarLocator.RollbarInstance.Configure(new RollbarLoggerConfig(
+                        rollbarCfg.AccessToken,
+                        Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                    )
                     {
-                        AccessToken = rollbarCfg.AccessToken,
-                        Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"),
-                        Enabled = (rollbarCfg.Environments?.Select(x => x.ToLower()) ?? new string[0]).Contains(
-                            Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.ToLower())
+                        RollbarDeveloperOptions =
+                        {
+                         Enabled = (rollbarCfg.Environments?.Select(x => x.ToLower()) ?? new string[0]).Contains(
+                             Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.ToLower())
+                        }
                     });
+
                     RollbarLogger = RollbarLocator.RollbarInstance.Logger;
                 }
                 catch (Exception ex)

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cartomatic.Utils.ApiClient
+﻿namespace Cartomatic.Utils.ApiClient
 {
     public class ApiClientFarmStatusInfo
     {

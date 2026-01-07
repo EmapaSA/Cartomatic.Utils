@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml.Serialization;
-using FluentAssertions;
+using AwesomeAssertions;
 using NUnit.Framework;
 
 namespace Cartomatic.Utils.Serialization.Tests
@@ -79,7 +79,7 @@ namespace Cartomatic.Utils.Serialization.Tests
         private string MakeTestXml()
         {
             return 
-@"<?xml version=""1.0""?>
+@"<?xml version=""1.0"" encoding=""utf-8""?>
 <TestObjectWithSimpleTypes xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <PropBool>true</PropBool>
   <PropEnum>Value2</PropEnum>

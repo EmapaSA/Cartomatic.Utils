@@ -1,25 +1,22 @@
-﻿#if NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
+﻿
+using System;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+#if NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 #endif
 
 
-using Newtonsoft.Json;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using System.Web;
-
-
 #if NETSTANDARD2_0 || NETCOREAPP3_1 || NET5_0_OR_GREATER || NET6_0_OR_GREATER
 
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using RestSharp;
 using RestSharp.Serializers;
 
 namespace Cartomatic.Utils

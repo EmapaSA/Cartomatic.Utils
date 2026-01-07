@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using FluentAssertions;
+using AwesomeAssertions;
 using NUnit.Framework;
 
 namespace Cartomatic.Utils.ApiClient.Tests
@@ -55,8 +52,8 @@ namespace Cartomatic.Utils.ApiClient.Tests
             await client.CheckHealthStatusAsync();
 
             client.HealthStatus.Should().Be(HealthStatus.Healthy);
-            client.LastHealthCheckTime.Should().BeGreaterOrEqualTo(start);
-            client.LastHealthCheckTime.Should().BeLessOrEqualTo(DateTime.Now.Ticks);
+            client.LastHealthCheckTime.Should().BeGreaterThanOrEqualTo(start);
+            client.LastHealthCheckTime.Should().BeLessThanOrEqualTo(DateTime.Now.Ticks);
 
         }
 
@@ -70,8 +67,8 @@ namespace Cartomatic.Utils.ApiClient.Tests
             client.LogLastHealthyResponse();
 
             client.HealthStatus.Should().Be(HealthStatus.Healthy);
-            client.LastHealthyResponseTime.Should().BeGreaterOrEqualTo(start);
-            client.LastHealthyResponseTime.Should().BeLessOrEqualTo(DateTime.Now.Ticks);
+            client.LastHealthyResponseTime.Should().BeGreaterThanOrEqualTo(start);
+            client.LastHealthyResponseTime.Should().BeLessThanOrEqualTo(DateTime.Now.Ticks);
 
         }
 
@@ -85,8 +82,8 @@ namespace Cartomatic.Utils.ApiClient.Tests
             client.MarkAsDead(0, "test");
 
             client.HealthStatus.Should().Be(HealthStatus.Dead);
-            client.LastUnHealthyResponseTime.Should().BeGreaterOrEqualTo(start);
-            client.LastUnHealthyResponseTime.Should().BeLessOrEqualTo(DateTime.Now.Ticks);
+            client.LastUnHealthyResponseTime.Should().BeGreaterThanOrEqualTo(start);
+            client.LastUnHealthyResponseTime.Should().BeLessThanOrEqualTo(DateTime.Now.Ticks);
 
         }
 
@@ -100,8 +97,8 @@ namespace Cartomatic.Utils.ApiClient.Tests
             client.MarkAsUnHealthy();
 
             client.HealthStatus.Should().Be(HealthStatus.Unhealthy);
-            client.LastUnHealthyResponseTime.Should().BeGreaterOrEqualTo(start);
-            client.LastUnHealthyResponseTime.Should().BeLessOrEqualTo(DateTime.Now.Ticks);
+            client.LastUnHealthyResponseTime.Should().BeGreaterThanOrEqualTo(start);
+            client.LastUnHealthyResponseTime.Should().BeLessThanOrEqualTo(DateTime.Now.Ticks);
 
         }
 

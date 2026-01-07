@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 
 #if NETSTANDARD2_0 || NETCOREAPP3_0
-using Microsoft.Build.Framework;
 
 namespace MSBuildTasks
 {
@@ -130,7 +127,6 @@ namespace MSBuildTasks
         /// <summary>
         /// reads a version sring from a file 
         /// </summary>
-        /// <param name="basePath"></param>
         /// <returns></returns>
         protected static string GetGitVersionFromFile(string filePath)
         {

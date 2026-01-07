@@ -1,8 +1,6 @@
 ﻿using System;
-using Cartomatic.Utils.SafeLink;
-using FluentAssertions;
+using AwesomeAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace Cartomatic.Utils.SafeLink.Tests
 {

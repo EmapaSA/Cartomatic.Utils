@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-
-namespace Cartomatic.Utils.Ftp
+﻿namespace Cartomatic.Utils.Ftp
 {
     public interface IFtpRequestSettings
     {

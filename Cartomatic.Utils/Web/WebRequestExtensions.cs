@@ -1,5 +1,4 @@
 ﻿#if NETFULL
-using System;
 using System.Net;
 using System.Web;
 #endif

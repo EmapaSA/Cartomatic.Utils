@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
+using AwesomeAssertions;
 using NUnit.Framework;
-
-using Cartomatic.Utils.Drawing;
+#pragma warning disable CA1416
 
 namespace Cartomatic.Utils.Drawing.Tests
 {
